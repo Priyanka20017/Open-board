@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+</head>
+
+<body>
+    <div>
+        <div class="toolbar">
+
+            <div class="tool" id="pencil">
+                <img src="./icons/pencil.png" alt="" class="tool-img">
+                <div class="sizebox">
+                    <div class="size1"></div>
+                    <div class="size2"></div>
+                    <div class="size3"></div>
+                    <div class="size4"></div>
+                </div>
+            </div>
+            <div class="tool" id="eraser">
+                <img src="./icons/eraser.png" alt="" class="tool-img">
+                <div class="sizebox">
+                    <div class="size1"></div>
+                    <div class="size2"></div>
+                    <div class="size3"></div>
+                    <div class="size4"></div>
+                </div>
+            </div>
+
+            <div class="tool" id="download">
+                <img src="./icons/download.png" alt="" class="tool-img">
+
+            </div>
+            <div class="tool" id="upload">
+                <img src="./icons/photo.png" alt="" class="tool-img">
+            </div>
+            <div class="colorbar">
+                <div class="red">
+                </div>
+                <div class="blue">
+                </div>
+                <div class="green">
+                </div>
+            </div>
+            <div id="rectangle" class="tool">
+                <img src="./icons/rectangular-shape-outline.png" alt="" class="tool-img">
+                <div class="sizebox">
+                    <div class="size1"></div>
+                    <div class="size2"></div>
+                    <div class="size3"></div>
+                    <div class="size4"></div>
+                </div>
+            </div>
+            <div id="line" class="tool">
+                <img src="./icons/diagonal-line.png" alt="" class="tool-img">
+                <div class="sizebox">
+                    <div class="size1"></div>
+                    <div class="size2"></div>
+                    <div class="size3"></div>
+                    <div class="size4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <canvas></canvas>
+    <script src="">
+        let canvasboard = document.querySelector("canvas");
+
+        //default height width 
+        canvasboard.height = window.innerHeight;
+        canvasboard.width = window.innerWidth;
+        //this gives us tool to draw on canvas
+        let tool = canvasboard.getContext("2d");
+        let body = document.querySelector("body");
+
+
+        //tool selector
+        let pencil = document.querySelector("#pencil");
+        let eraser = document.querySelector("#eraser");
+        let download = document.querySelector("#download");
+        let uploadimage = document.querySelector("#upload");
+        let rect = document.querySelector("#rectangle");
+        let line = document.querySelector("#line");
+        //tool size changer selector
+        let options = document.querySelectorAll(".sizebox");
+
+
+        //current tool
+        let ctool = "pencil";
+
+
+        //tool change logic
+        //pencil 
+        pencil.addEventListener("click", function(e) {
+                if (ctool == "pencil") {
+                    options[0].style.display = "flex";
+
+                } else {
+                    for (let i = 0; i < options.length; i++) {
+                        options[i].style.display = "none";
+                    }
+                    ctool = "pencil";
+                    tool.strokeStyle = "black";
+                    tool.lineWidth = pencileSize;
+                }
+
+            })
+            //eraser
+        eraser.addEventListener("click", function(e) {
+                if (ctool == "eraser") {
+                    options[1].style.display = "flex";
+                } else {
+                    for (let i = 0; i < options.length; i++) {
+                        options[i].style.display = "none";
+                    }
+                    ctool = "eraser";
+                    tool.lineWidth = erasersize;
+                }
+            })
+            //download
+        download.addEventListener("click", function(e) {
+                ctool = "download";
+            })
+            //upload
+        uploadimage.addEventListener("click", function(e) {
+            ctool = "upload";
+        })
+        rect.addEventListener("click", function(e) {
+            if (ctool == "rect") {
+                options[2].style.display = "flex";
+            } else {
+                for (let i = 0; i < options.length; i++) {
+                    options[i].style.display = "none";
+                }
+                ctool = "rect";
+                tool.lineWidth = rectsize;
+            }
+        })
+        line.addEventListener("click", function(e) {
+                if (ctool == "line") {
+                    options[3].style.display = "flex";
+                } else {
+                    for (let i = 0; i < options.length; i++) {
+                        options[i].style.display = "none";
+                    }
+                    ctool = "line";
+                    tool.lineWidth = linesize;
+                }
+
+            })
+            //shapebox
+
+
+        //size change
+        let pencilsize = 5;
+        let erasersize = 5;
+        let rectsize = 5;
+        let linesize = 5;
+        let sizebox = document.querySelectorAll(".sizebox");
+        sizebox[0].addEventListener("click", function(e) {
+            let elements = ["size1", "size2", "size3", "size4"];
+            let allTheclasses = e.target.classList;
+            let firstclass = allTheclasses[0];
+            let test = elements.includes(firstclass);
+            if (test) {
+                if (firstclass == "size1") {
+                    pencilsize = 5;
+                } else if (firstclass == "size2") {
+                    pencilsize = 10;
+                } else if (firstclass == "size3") {
+                    pencilsize = 15;
+                } else if (firstclass == "size4") {
+                    pencilsize = 20;
+                }
+            }
+            // console.log("pencilsize" + pencilsize);
+            tool.lineWidth = pencilsize;
+            console.log("pencilSize" + pencilsize);
+
+        })
+        sizebox[1].addEventListener("click", function(e) {
+            let elements = ["size1", "size2", "size3", "size4"];
+            let allTheclasses = e.target.classList;
+            let firstclass = allTheclasses[0];
+            let test = elements.includes(firstclass);
+            if (test) {
+                if (firstclass == "size1") {
+                    erasersize = 5;
+                } else if (firstclass == "size2") {
+                    erasersize = 10;
+                } else if (firstclass == "size3") {
+                    erasersize = 15;
+                } else if (firstclass == "size4") {
+                    erasersize = 20;
+                }
+            }
+            tool.lineWidth = erasersize;
+        })
+        sizebox[2].addEventListener("click", function(e) {
+            let elements = ["size1", "size2", "size3", "size4"];
+            let allTheclasses = e.target.classList;
+            let firstclass = allTheclasses[0];
+            let test = elements.includes(firstclass);
+            if (test) {
+                if (firstclass == "size1") {
+                    rectsize = 5;
+                } else if (firstclass == "size2") {
+                    rectsize = 10;
+                } else if (firstclass == "size3") {
+                    rectsize = 15;
+                } else if (firstclass == "size4") {
+                    rectsize = 20;
+                }
+            }
+            tool.lineWidth = rectsize;
+        })
+        sizebox[3].addEventListener("click", function(e) {
+            let elements = ["size1", "size2", "size3", "size4"];
+            let allTheclasses = e.target.classList;
+            let firstclass = allTheclasses[0];
+            let test = elements.includes(firstclass);
+            if (test) {
+                if (firstclass == "size1") {
+                    linesize = 5;
+                } else if (firstclass == "size2") {
+                    linesize = 10;
+                } else if (firstclass == "size3") {
+                    linesize = 15;
+                } else if (firstclass == "size4") {
+                    linesize = 20;
+                }
+            }
+            tool.lineWidth = linesize;
+        })
+
+        let redcolor = document.querySelector(".red");
+        let bluecolor = document.querySelector(".blue");
+        let greencolor = document.querySelector(".green");
+
+        redcolor.addEventListener("click", function() {
+            tool.strokeStyle = "red";
+        })
+        bluecolor.addEventListener("click", function() {
+            tool.strokeStyle = "cyan";
+        })
+        greencolor.addEventListener("click", function() {
+            tool.strokeStyle = "lightgreen";
+        })
+
+
+        let ix, iy, fx, fy;
+        let drawingmode = false;
+        // console.log(body.getBoundingClientRect());
+        //canvas top point kitna niche hai
+        let boardTop = canvasboard.getBoundingClientRect().top;
+        //canvas left p kitna aage hai
+        let boardLeft = canvasboard.getBoundingClientRect().left;
+        body.addEventListener("mousedown", function(e) {
+            ix = e.clientX - boardLeft;
+            iy = e.clientY - boardTop;
+            if (ctool == "pencil") {
+                drawingmode = true;
+                tool.beginPath();
+                tool.moveTo(ix, iy);
+            }
+        })
+
+        body.addEventListener("mouseup", function(e) {
+            if (ctool == "pencil" || ctool == "eraser") {
+                drawingmode = false;
+            } else if (ctool = "rect" || ctool == "line") {
+                fx = e.clientX + boardLeft;
+                fy = e.clientY - boardTop;
+                let height = fy - iy;
+                let width = fx - ix;
+                if (ctool == "rect") {
+                    tool.strokeRect(ix, iy, width, height);
+                } else if (ctool == "line") {
+                    tool.beginPath();
+                    tool.moveTo(ix, iy);
+                    tool.lineTo(fx, fy);
+                    tool.stroke();
+                }
+            }
+        })
+        body.addEventListener("mousemove", function(e) {
+            if (drawingmode == false) {
+                return;
+            }
+            if (ctool == "pencil") {
+                fx = e.clientX - boardLeft;
+                fy = e.clientY - boardTop;
+                tool.beginPath();
+                tool.moveTo(ix, iy);
+                tool.lineTo(fx, fy);
+                tool.stroke();
+                ix = fx;
+                iy = fy;
+            }
+
+        })
+    </script>
+</body>
+
+</html>

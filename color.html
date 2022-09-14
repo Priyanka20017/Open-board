@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .outer {
+            border: 3px solid black;
+            width: 250px;
+            height: 50px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        
+        .red {
+            height: 35px;
+            width: 35px;
+            background-color: red;
+            border-radius: 60%;
+        }
+        
+        .blue {
+            height: 35px;
+            width: 35px;
+            background-color: blue;
+            border-radius: 60%;
+        }
+        
+        .green {
+            height: 35px;
+            width: 35px;
+            background-color: green;
+            border-radius: 60%;
+        }
+        
+        .color-area {
+            background-color: grey;
+            height: 200px;
+            width: 250px;
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="green"></div>
+        <div class="red"></div>
+        <div class="blue"></div>
+    </div>
+    <div class="color-area"></div>
+    <script>
+        let colorarea = document.querySelector(".color-area");
+        let redcolor = document.querySelector(".red");
+        let bluecolor = document.querySelector(".blue");
+        let greencolor = document.querySelector(".green");
+
+        redcolor.addEventListener("click", function() {
+            colorarea.style.backgroundColor = "red";
+
+        })
+        bluecolor.addEventListener("click", function() {
+            colorarea.style.backgroundColor = "cyan";
+        })
+        greencolor.addEventListener("click", function() {
+            colorarea.style.backgroundColor = "lightgreen";
+        })
+    </script>
+</body>
+
+</html>
+<!-- * {
+    border: 1px solid red;
+}
+body {
+            align-items: center;
+        }
+html {
+            align-items: center;
+        }
+
+body {
+    border: 1px solid blue;
+    align-items: center;
+}
+
+html {
+    border: 1px solid grey;
+    align-items: center;
+}
+
+
+-->

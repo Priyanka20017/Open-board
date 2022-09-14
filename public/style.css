@@ -1,0 +1,93 @@
+            .toolbar {
+                border: 1px solid black;
+                border-radius: 4px;
+                width: 90vw;
+                margin: 0 auto;
+                align-items: center;
+                display: flex;
+                justify-content: space-evenly;
+                height: 100px;
+            }
+            
+            .tool-img {
+                height: 50px;
+            }
+            
+            .colorbar {
+                border: 1px solid grey;
+                border-radius: 4px;
+                width: 150px;
+                height: 50px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            
+            .red {
+                height: 35px;
+                width: 35px;
+                background-color: red;
+                border-radius: 60%;
+            }
+            
+            .blue {
+                height: 35px;
+                width: 35px;
+                background-color: blue;
+                border-radius: 60%;
+            }
+            
+            .green {
+                height: 35px;
+                width: 35px;
+                background-color: green;
+                border-radius: 60%;
+            }
+            
+            .sizebox {
+                border-radius: 2px;
+                width: 90px;
+                height: 30px;
+                border: 1px solid grey;
+                justify-content: space-evenly;
+                /*display: flex;*/
+                display: none;
+            }
+            
+            .size1 {
+                border-radius: 50%;
+                background-color: lightsteelblue;
+                height: 10px;
+                width: 10px;
+            }
+            
+            .size2 {
+                border-radius: 50%;
+                background-color: lightsteelblue;
+                height: 15px;
+                width: 15px;
+            }
+            
+            .size3 {
+                border-radius: 50%;
+                background-color: lightsteelblue;
+                height: 20px;
+                width: 20px;
+            }
+            
+            .size4 {
+                border-radius: 50%;
+                background-color: lightsteelblue;
+                height: 25px;
+                width: 25px;
+            }
+            
+            body {
+                margin: 0px;
+            }
+            
+            .fa-solid {
+                font-size: 2rem;
+                margin-right: 30px;
+                margin-left: 30px;
+            }
